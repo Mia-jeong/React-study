@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import SeasonDisplay from "./SeasonDisplay";
+import Spinner from "./Spinner";
 
 //Rules of state
 //1. only usuable with class components
@@ -32,19 +33,24 @@ class App extends React.Component {
     );
   }
 
-  //Good place to do more dataloading when state/props change >componentDidUpdate
-  //good place to do cleanup
-
-  //React says we have to define render!!
-  render() {
+  //helper method : to wrap up the result
+  renderContent() {
     if (this.state.errorMessage && !this.state.lat) {
       return <div>Error : {this.state.errorMessage}</div>;
     }
     if (!this.state.errorMessage && this.state.lat) {
-      return <SeasonDisplay lat={this.state.lat} />;
+      return <SeasonDisplay lat={this.state.lat} />; //when state is updated, SeasonDisplay is also updated i mean rerendered
     }
 
-    return <div>Loading!</div>;
+    return <Spinner message="Please accept location request" />;
+  }
+
+  //Good place to do more dataloading when state/props change >componentDidUpdate
+  //good place to do cleanup  >componentwillUnmount
+
+  //React says we have to define render!!
+  render() {
+    return <div className="border red">{this.renderContent()}</div>;
   }
 }
 
