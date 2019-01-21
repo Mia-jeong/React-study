@@ -48,6 +48,16 @@ class App extends React.Component {
   //Good place to do more dataloading when state/props change >componentDidUpdate
   //good place to do cleanup  >componentwillUnmount
 
+  //*****Life cycle Method */
+  // Time goes from 1 to 5
+  // 1. Constructor
+  // 2. render          
+  // -------content visible on screen
+  // 3. componentDidMount
+  // -------Sit and wait for updates
+  // 4. componentDidUpdate      
+  // -------Sit and wait until this component is not longer shown
+  // 5. ComponentWillUnmount
   //React says we have to define render!!
   render() {
     return <div className="border red">{this.renderContent()}</div>;

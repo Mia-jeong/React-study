@@ -8,6 +8,7 @@ const Spinner = props => {
   );
 };
 
+//if props.value is undefined or null, it will show up on screen
 Spinner.defaultProps = {
   message: "Loading..."
 };
