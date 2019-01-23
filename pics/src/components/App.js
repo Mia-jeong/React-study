@@ -4,7 +4,9 @@ import SearchBar from "./SearchBar";
 
 class App extends React.Component {
   state = { images: [] };
-  async onSearchSubmit(term) {
+
+  //to bind value of this correctly change it to arrow function
+  onSearchSubmit = async term => {
     //Request made to unsplash API
     const response = await axios.get("https://api.unsplash.com/search/photos", {
       params: { query: term },
@@ -17,7 +19,7 @@ class App extends React.Component {
         console.log(response.data.results);
       }); */
     this.setState({ images: response.data.results });
-  }
+  };
 
   render() {
     return (
