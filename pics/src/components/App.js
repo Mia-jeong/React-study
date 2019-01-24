@@ -1,12 +1,12 @@
 import React from "react";
 import unsplash from "../api/unsplash";
 import SearchBar from "./SearchBar";
-import ImageList from "./imageList";
+import ImageList from "./ImageList";
 
 class App extends React.Component {
   state = { images: [] };
 
-  //to bind value of this correctly change it to arrow function
+  //to bind value of this correctly, change it to arrow function
   onSearchSubmit = async term => {
     //Request made to unsplash API
     const response = await unsplash.get("/search/photos", {
