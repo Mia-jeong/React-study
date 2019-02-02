@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { fetchPosts } from "../actions";
+import UserHeader from "./UserHeader";
 
 class PostList extends React.Component {
   componentDidMount() {
@@ -17,6 +18,7 @@ class PostList extends React.Component {
               <h2>{post.title}</h2>
               <p>{post.body}</p>
             </div>
+            <UserHeader userId={post.userId} />
           </div>
         </div>
       );
@@ -37,3 +39,16 @@ export default connect(
   mapStateToProps,
   { fetchPosts }
 )(PostList);
+
+/* 
+
+FetchPosts
+
+Show posts in PostList
+Each Element in Postlist shows UserHeader
+UserHeader is given ID of user to show
+Each UserHeader attemps to fetch its user
+Fetch user    Fetch User    Fetch User
+    |             |             |
+    Show users in each UserHeader
+*/

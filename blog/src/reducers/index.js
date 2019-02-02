@@ -1,8 +1,9 @@
 import { combineReducers } from "redux";
 import postsReducer from "./postsReducer";
-
+import usersReducer from "./usersReducer";
 export default combineReducers({
-  posts: postsReducer
+  posts: postsReducer,
+  users: usersReducer
 });
 
 //Rules of reducers
@@ -18,7 +19,7 @@ https://github.com/reduxjs/redux/ > src > combineReducer.js > hasChanged functio
 
 The reason we say this is that if you accidentally return the same value that is pumped into your reducer
 liek even if you change it even if we modify this thing right here if we eventually say return state
-at the very bottom and it;s still the same object of the same array e it modifiend or not
+at the very bottom and it's still the same object of the same array  it modifiend or not
 redux is going to say no difference here is , the same object or array in memory 
 nothing has changed so we have done absolutely no updates to any data insdie of our application 
 
