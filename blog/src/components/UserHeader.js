@@ -7,7 +7,7 @@ class UserHeader extends React.Component {
     this.props.fetchUser(this.props.userId);
   }
   render() {
-    const user = this.props.users.find(user => user.id === this.props.userId);
+    const { user } = this.props;
     if (!user) {
       return null;
     }
@@ -15,8 +15,13 @@ class UserHeader extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
-  return { users: state.users };
+//to make it more reusable, bind the Exact user in mapStateToProps.
+//you're going to have it in separate file in the future to use it in multiple components
+
+//props only can be acceced to Components
+//that's why I pass another arguments(OwnProps) to mapStateToProps
+const mapStateToProps = (state, ownProps) => {
+  return { user: state.users.find(user => user.id === ownProps.userId) };
 };
 
 export default connect(
