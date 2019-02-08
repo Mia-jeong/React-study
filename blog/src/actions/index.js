@@ -63,8 +63,15 @@ export const fetchPostsAndUsers = () => async (dispatch, getState) => {
   //whenever we call an action creator from inside of an ation creator we need to make sure that we dispatch the result of calling the action creator
 
   await dispatch(fetchPosts());
+  /*
   const userIds = _.uniq(_.map(getState().posts, "userId"));
   userIds.forEach(id => dispatch(fetchUser(id)));
+*/
+  _.chain(getState().posts)
+    .map("userId")
+    .uniq()
+    .forEach(id => dispatch(fetchUser(id)))
+    .value();
 };
 
 /* 
