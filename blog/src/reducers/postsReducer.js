@@ -1,5 +1,5 @@
 export default (state = [], action) => {
-  //bad!
+  //bad! not to reach out of itself, it should be pure reducers
   //return document.querySelector('input;);
   //return axios.get('posts')
 

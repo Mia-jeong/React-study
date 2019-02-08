@@ -22,5 +22,5 @@ react-redux : Integration layer between react and redux
 axios : Helps us make network requests
 redux-thunk : Middleware to help us make requests in a redux application
 
-
+npm install --save redux react-redux axios redux-thunk
 */

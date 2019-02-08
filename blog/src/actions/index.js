@@ -20,13 +20,17 @@ export const fetchPosts = () => async dispatch => {
   dispatch({ type: "FETCH_POSTS", payload: response.data });
 };
 
-/*
 export const fetchUser = id => async dispatch => {
   const response = await jsonPlaceholder.get(`/users/${id}`);
 
   dispatch({ type: "FETCH_USER", payload: response.data });
 };
-*/
+
+//options to cut multiple requests off
+/*
+1. using memoization
+if you use memoization you can only fetch unique user one time, so if you want to update user data you can't do it just using this memoization
+
 
 export const fetchUser = id => dispatch => {
   _fetchUser(id, dispatch);
@@ -36,19 +40,31 @@ const _fetchUser = _.memoize(async (id, dispatch) => {
 
   dispatch({ type: "FETCH_USER", payload: response.data });
 });
-//export const fetchUser = function(id) {
-//  return _.memoize(async function(dispatch) {
-//    const response = await jsonPlaceholder.get(`/users/${id}`);
 
-//    dispatch({ type: "FETCH_USER", payload: response.data });
-//  });
-//};
+export const fetchUser = function(id) {
+  return _.memoize(async function(dispatch) {
+    const response = await jsonPlaceholder.get(`/users/${id}`);
 
-//Totally fine (you can still make normal action creator (return object ))
-export const selectPost = () => {
-  return {
-    type: "SELECT_POST"
-  };
+    dispatch({ type: "FETCH_USER", payload: response.data });
+  });
+};
+*/
+
+/* 
+2. fetchPostsAndUsers()
+(1) Call 'fetchPosts'
+(2) Get list of posts
+(3) Find all unique userId's from list of posts
+(4) Iterate over unique userId's
+(5) Call 'fetchUser' with each userId
+*/
+
+export const fetchPostsAndUsers = () => async (dispatch, getState) => {
+  //whenever we call an action creator from inside of an ation creator we need to make sure that we dispatch the result of calling the action creator
+
+  await dispatch(fetchPosts());
+  const userIds = _.uniq(_.map(getState().posts, "userId"));
+  userIds.forEach(id => dispatch(fetchUser(id)));
 };
 
 /* 

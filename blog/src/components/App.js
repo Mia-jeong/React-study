@@ -15,7 +15,7 @@ export default App;
 /* 
 1.Component gets rendered onto the screen
 2.Components 'componentDidMount lifycycle method gets called'
-3.we call action creator from 'componentDidMount'                            
+3.we call action creator from 'comdponentDidMount'                            
 
 Componens are generally responsible for fetching data they need by calling an action creator 
 
