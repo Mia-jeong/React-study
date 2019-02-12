@@ -1,11 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
-import { createStore } from "redux";
+import { createStore, applyMiddleware, compose } from "redux";
+
 import App from "./components/App";
 import reducers from "./reducers";
 
-const store = createStore(reducers);
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const store = createStore(reducers, composeEnhancers(applyMiddleware()));
 ReactDOM.render(
   <Provider store={store}>
     <App />
@@ -20,3 +22,12 @@ ReactDOM.render(
     react-router-redux  : Bindings between Redux and React Router (not necessary)
 
  */
+
+//extension to debug redux
+//github.com/zalmoxisus/redux-devtools-extension
+
+//install redux from
+//npm install --save redux-form
+
+//redux form documentation
+//http://redux-form.com/

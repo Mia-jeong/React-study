@@ -24,27 +24,27 @@ class GoogleAuth extends React.Component {
   }
 
   onAuthChange = isSignedIn => {
-    console.log("onAuthChange", isSignedIn);
+    //console.log("onAuthChange", isSignedIn);
     if (isSignedIn) {
       this.props.signIn(this.auth.currentUser.get().getId());
-      console.log("signIn working", this.props.isSignedIn);
+      //console.log("signIn working", this.props.isSignedIn);
     } else {
       this.props.signOut();
-      console.log("signOut working", this.props.isSignedIn);
+      //console.log("signOut working", this.props.isSignedIn);
     }
   };
 
   onSignInClick = () => {
     this.auth.signIn();
-    console.log("sign In", this.props.isSignedIn);
+    //console.log("sign In", this.props.isSignedIn);
   };
 
   onSignOutClick = () => {
     this.auth.signOut();
-    console.log("sign out", this.props.isSignedIn);
+    //console.log("sign out", this.props.isSignedIn);
   };
   renderAuthButton() {
-    console.log("button", this.props.isSignedIn);
+    //console.log("button", this.props.isSignedIn);
     if (this.props.isSignedIn === null) {
       return null;
     } else if (this.props.isSignedIn) {
