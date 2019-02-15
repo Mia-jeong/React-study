@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 
 class GoogleAuth extends React.Component {
   componentDidMount() {
-    //initialize API
+    //initialize API (client:auth2 :narrow the range of gapi to what i want to use for )
     window.gapi.load("client:auth2", () => {
       //callBack function
 
@@ -26,9 +26,11 @@ class GoogleAuth extends React.Component {
   onAuthChange = isSignedIn => {
     //console.log("onAuthChange", isSignedIn);
     if (isSignedIn) {
+      //call action creator
       this.props.signIn(this.auth.currentUser.get().getId());
       //console.log("signIn working", this.props.isSignedIn);
     } else {
+      //call action creator
       this.props.signOut();
       //console.log("signOut working", this.props.isSignedIn);
     }

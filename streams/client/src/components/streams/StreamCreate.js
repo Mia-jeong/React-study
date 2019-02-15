@@ -1,8 +1,10 @@
 import React from "react";
 import { Field, reduxForm } from "redux-form";
+import { connect } from "react-redux";
+import { createStream } from "../../actions";
 
 //Field : component which shows on the screen
-//reduxFrom : function exactly the same as the connect function
+//reduxForm : function exactly the same as the connect function
 class StreamCreate extends React.Component {
   renderError({ error, touched }) {
     if (touched && error) {
@@ -34,10 +36,11 @@ class StreamCreate extends React.Component {
     );
   };
 
-  onSubmit(formValues) {
+  onSubmit = formValues => {
     //event.preventDefault(); handleSubmit automatically take event value and  do it for us
-    //console.log("value", formValues);
-  }
+    console.log("value", formValues);
+    this.props.createStream(formValues);
+  };
   render() {
     //console.log(this.props);
     return (
@@ -45,7 +48,7 @@ class StreamCreate extends React.Component {
         className="ui form error"
         onSubmit={this.props.handleSubmit(this.onSubmit)}
       >
-        <Field name="title" component={this.renderInput} label="Enter Titile" />
+        <Field name="title" component={this.renderInput} label="Enter Title" />
         <Field
           name="description"
           component={this.renderInput}
@@ -70,7 +73,24 @@ const validate = formValues => {
   return error;
 };
 
-export default reduxForm({
+const formWrapped = reduxForm({
   form: "streamCreate", //name of this form
   validate
 })(StreamCreate);
+
+export default connect(
+  null,
+  { createStream }
+)(formWrapped);
+
+//to make new server for API(stores the list of detail of Streaming currently in server)
+/* 
+cd <folder>
+npm init
+npm install --save json-server
+
+
+code .  < command line to open code editor
+
+
+*/

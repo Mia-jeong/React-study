@@ -1,0 +1,9 @@
+{
+  "streams": [
+    {
+      "title": "streams",
+      "description": "wow my first streaming video is saved to json-server",
+      "id": 1
+    }
+  ]
+}
