@@ -38,7 +38,7 @@ class StreamCreate extends React.Component {
 
   onSubmit = formValues => {
     //event.preventDefault(); handleSubmit automatically take event value and  do it for us
-    console.log("value", formValues);
+    //console.log("value", formValues);
     this.props.createStream(formValues);
   };
   render() {
@@ -61,6 +61,7 @@ class StreamCreate extends React.Component {
 }
 
 const validate = formValues => {
+  //console.log("validate", formValues); it's invoked whenever it's changed (onChange)
   const error = {};
   if (!formValues.title) {
     // only ran if the user did not enter title
