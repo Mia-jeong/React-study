@@ -26,6 +26,7 @@ class StreamCreate extends React.Component {
       />
     );
     */
+
     const className = `field ${meta.error && meta.touched ? "error" : ""}`;
     return (
       <div className={className}>
